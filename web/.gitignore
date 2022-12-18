@@ -10,6 +10,7 @@
 # Ignore all logfiles and tempfiles.
 /coverage/*
 /log/*
+/spec/examples.txt
 /tmp/*
 !/log/.keep
 !/tmp/.keep

@@ -28,10 +28,13 @@ module Feedrome
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    config.time_zone = "Tokyo"
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-  end
+
+    config.generators.after_generate do |files|
+      system("bundle exec rubocop --auto-correct-all #{files.join(' ')}", exception: true)
+    end  end
 end
