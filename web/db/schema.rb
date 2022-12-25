@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_25_122702) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_25_133818) do
+  create_table "feeds", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "source_url", null: false, comment: "ソースURL"
+    t.string "title", comment: "タイトル"
+    t.text "description", comment: "説明"
+    t.string "language_code", comment: "言語コード"
+    t.string "link_url", comment: "リンク先URL"
+    t.datetime "modified_at", comment: "更改日時"
+    t.datetime "crawled_at", comment: "クロール日時"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["source_url"], name: "index_feeds_on_source_url", unique: true
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "firebase_uid", null: false, collation: "utf8mb4_bin", comment: "Firebase UID"
     t.string "name", null: false, comment: "名前"
