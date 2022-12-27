@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_25_133818) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_27_121027) do
   create_table "feeds", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "source_url", null: false, comment: "ソースURL"
     t.string "title", comment: "タイトル"
@@ -24,6 +24,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_25_133818) do
     t.index ["source_url"], name: "index_feeds_on_source_url", unique: true
   end
 
+  create_table "items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "feed_id", null: false, comment: "フィードID"
+    t.string "title", null: false, comment: "タイトル"
+    t.text "description", comment: "説明"
+    t.string "link_url", null: false, comment: "リンク先URL"
+    t.datetime "published_at", null: false, comment: "公開日時"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feed_id"], name: "index_items_on_feed_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "firebase_uid", null: false, collation: "utf8mb4_bin", comment: "Firebase UID"
     t.string "name", null: false, comment: "名前"
@@ -32,4 +43,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_25_133818) do
     t.index ["firebase_uid"], name: "index_users_on_firebase_uid", unique: true
   end
 
+  add_foreign_key "items", "feeds"
 end

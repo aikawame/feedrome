@@ -3,6 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe Feed do
+  describe 'associations' do
+    it { is_expected.to have_many(:items).dependent(:destroy) }
+  end
+
   describe 'responses' do
     it { is_expected.to respond_to(:source_url) }
     it { is_expected.to respond_to(:title) }
