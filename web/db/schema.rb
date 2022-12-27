@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_27_131855) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_27_140518) do
   create_table "feeds", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "source_url", null: false, comment: "ソースURL"
     t.string "title", comment: "タイトル"
@@ -45,6 +45,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_131855) do
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
+  create_table "tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false, comment: "ユーザーID"
+    t.string "name", null: false, comment: "名称"
+    t.integer "position", default: 0, null: false, comment: "位置"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tags_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "firebase_uid", null: false, collation: "utf8mb4_bin", comment: "Firebase UID"
     t.string "name", null: false, comment: "名前"
@@ -56,4 +65,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_131855) do
   add_foreign_key "items", "feeds"
   add_foreign_key "subscriptions", "feeds"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "tags", "users"
 end
