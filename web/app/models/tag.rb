@@ -3,6 +3,8 @@
 # タグ
 class Tag < ApplicationRecord
   belongs_to :user
+  has_many :taggings, dependent: :destroy
+  has_many :subscriptions, through: :taggings
 
   validates :name, presence: true, uniqueness: { scope: :user_id, case_sensitive: false }
 

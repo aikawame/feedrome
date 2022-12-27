@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_27_140518) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_27_144733) do
   create_table "feeds", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "source_url", null: false, comment: "ソースURL"
     t.string "title", comment: "タイトル"
@@ -45,6 +45,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_140518) do
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
+  create_table "taggings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "tag_id", null: false, comment: "タグID"
+    t.bigint "subscription_id", null: false, comment: "購読ID"
+    t.integer "position", default: 0, null: false, comment: "位置"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscription_id"], name: "index_taggings_on_subscription_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
   create_table "tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
     t.string "name", null: false, comment: "名称"
@@ -65,5 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_140518) do
   add_foreign_key "items", "feeds"
   add_foreign_key "subscriptions", "feeds"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "taggings", "subscriptions"
+  add_foreign_key "taggings", "tags"
   add_foreign_key "tags", "users"
 end

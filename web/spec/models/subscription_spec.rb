@@ -6,6 +6,8 @@ RSpec.describe Subscription do
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:feed) }
+    it { is_expected.to have_many(:taggings).dependent(:destroy) }
+    it { is_expected.to have_many(:tags).through(:taggings) }
   end
 
   describe 'responses' do
