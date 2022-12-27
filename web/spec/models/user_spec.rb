@@ -3,6 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe User do
+  describe 'associations' do
+    it { is_expected.to have_many(:subscriptions).dependent(:destroy) }
+  end
+
   describe 'responses' do
     it { is_expected.to respond_to(:firebase_uid) }
     it { is_expected.to respond_to(:name) }
