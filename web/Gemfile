@@ -8,9 +8,12 @@ gem 'rails', '~> 7.0.4'
 
 gem 'acts_as_list'
 gem 'bootsnap', require: false
+gem 'bootstrap'
+gem 'bootstrap_form'
 gem 'faker'
 gem 'google-apis-identitytoolkit_v3'
 gem 'importmap-rails'
+gem 'mini_racer'
 gem 'mysql2'
 gem 'puma'
 gem 'sassc-rails'
