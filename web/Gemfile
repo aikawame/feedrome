@@ -11,7 +11,7 @@ gem 'bootsnap', require: false
 gem 'bootstrap'
 gem 'bootstrap_form'
 gem 'faker'
-gem 'google-apis-identitytoolkit_v3'
+gem 'google-apis-identitytoolkit_v3', require: false
 gem 'importmap-rails'
 gem 'mini_racer'
 gem 'mysql2'
