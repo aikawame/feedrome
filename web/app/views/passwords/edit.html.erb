@@ -1,0 +1,16 @@
+<div class="col-md-3 mx-auto">
+  <h1>パスワード変更</h1>
+  <%= form_with(model: @password, method: :patch) do |form| %>
+    <% if @password.errors.any? %>
+      <div class="alert alert-danger">
+        <% @password.errors.each do |error| %>
+          <%= error.message %>
+        <% end %>
+      </div>
+    <% end %>
+    <%= form.password_field :current_value, placeholder: '現在のパスワード', class: 'form-control' %>
+    <%= form.password_field :new_value, placeholder: '新しいパスワード', class: 'form-control mt-2' %>
+    <%= form.password_field :verified_value, placeholder: '新しいパスワード（確認用）', class: 'form-control mt-2' %>
+    <%= form.submit '適用', class: 'btn btn-primary w-100 mt-2' %>
+  <% end %>
+</div>

@@ -1,0 +1,13 @@
+ja:
+  authentications:
+    verify:
+      failure: ログインに失敗しました
+  users:
+    update:
+      success: ユーザー情報を更新しました
+    update_email:
+      success: メールアドレスを更新しました
+    update_password:
+      success: パスワードを更新しました
+    destroy:
+      success: ユーザー情報を削除しました

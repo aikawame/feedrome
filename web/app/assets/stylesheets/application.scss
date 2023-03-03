@@ -1,1 +1,11 @@
+$primary: #ff6600;
+$btn-border-radius: 19px;
+$btn-border-radius-sm: 16px;
+$btn-border-radius-lg: 24px;
+$navbar-light-color: rgba(255, 255, 255, 1);
+
 @import "bootstrap";
+
+body {
+  font-family: sans-serif;
+}

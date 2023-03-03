@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root 'homes#index'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :homes, only: %i[index]
+
+  get  'login',  to: 'authentications#login'
+  post 'login',  to: 'authentications#verify', as: 'verify'
+  get  'logout', to: 'authentications#logout'
+
+  resources :users, except: %i[index], param: :firebase_uid do
+  end
 end

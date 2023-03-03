@@ -1,0 +1,12 @@
+<%= form_with(model: user, url: verify_path) do |form| %>
+  <% if user.errors.any? %>
+    <div class="alert alert-danger">
+      <% user.errors.each do |error| %>
+        <%= error.message %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= form.email_field :email, placeholder: 'メールアドレス', class: 'form-control', required: true %>
+  <%= form.password_field :password, placeholder: 'パスワード', class: 'form-control mt-2', required: true %>
+  <%= form.submit 'ログイン', class: 'btn btn-primary w-100 mt-2' %>
+<% end %>

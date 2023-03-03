@@ -1,0 +1,50 @@
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js'
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup
+} from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js'
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyCPthIbT9bqOsjmoMa94wvoLCkGl-hMpR8',
+  authDomain: 'feedrome-dev.firebaseapp.com',
+  projectId: 'feedrome-dev',
+  // storageBucket: 'feedrome-dev.appspot.com',
+  // messagingSenderId: '384567526263',
+  appId: '1:384567526263:web:6e9e525f716d5d7a349772'
+}
+const app = initializeApp(firebaseConfig)
+
+const authenticate = async () => {
+  const provider = new GoogleAuthProvider()
+  const auth = getAuth(app)
+  const result = await signInWithPopup(auth, provider)
+  return result.user
+}
+
+document.querySelector('button#login').addEventListener('click', async () => {
+  const user = await authenticate()
+  document.querySelector('input#id_token').value = await user.getIdToken()
+  document.querySelector('form').submit()
+})
+</script>
+<div class="col-md-3 mx-auto">
+  <h1>ログイン</h1>
+
+  <% if flash[:alert].present? %>
+    <div class="alert alert-danger">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+  <%= button_tag 'Googleアカウントでログイン', id: 'login', class: 'btn btn-outline-secondary w-100' %>
+
+
+  <div style="display:none">
+    <%= form_tag('/login', method: :post) do %>
+      <%= hidden_field_tag('authenticity_token', form_authenticity_token)%>
+      <%= text_field_tag('id_token', '') %>
+    <% end %>
+  </div>
+</div>

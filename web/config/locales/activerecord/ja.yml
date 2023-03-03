@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        firebase_uid: Firebase UID
+        name: 名前
+        created_at: 作成日時
+        updated_at: 更新日時
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              invalid_email: 正しいメールアドレスを入力してください
+              invalid_email_or_password: メールアドレスまたはパスワードが違います
+              email_exists: メールアドレスは既に登録されています
+              weak_password: パスワードは6文字以上で入力してください
+              unknown_error: 不明なエラーが発生しました
