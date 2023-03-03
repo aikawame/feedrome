@@ -21,6 +21,7 @@ services:
       - '3000:3000'
     volumes:
       - ./web:/opt/project:cached
+    command: rails s -b 0.0.0.0
     depends_on:
       - database
     stdin_open: true
