@@ -1,0 +1,31 @@
+services:
+  database:
+    image: mysql:9.1
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Tokyo
+    ports:
+      - '3306:3306'
+    volumes:
+      - database:/var/lib/mysql
+  web:
+    build:
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST: database
+      RAILS_ENV: development
+    ports:
+      - '80:80'
+    volumes:
+      - .:/rails:cached
+    depends_on:
+      - database
+    stdin_open: true
+    tty: true
+
+volumes:
+  database:
+    driver: local
+
