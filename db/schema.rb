@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_03_155845) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_03_161837) do
   create_table "entries", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "feed_id", null: false
     t.string "title", null: false
@@ -38,6 +38,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_03_155845) do
     t.index ["source_url"], name: "index_feeds_on_source_url", unique: true
   end
 
+  create_table "subscriptions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "feed_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feed_id"], name: "index_subscriptions_on_feed_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -63,4 +72,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_03_155845) do
   end
 
   add_foreign_key "entries", "feeds"
+  add_foreign_key "subscriptions", "feeds"
+  add_foreign_key "subscriptions", "users"
 end
