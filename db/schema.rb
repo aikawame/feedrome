@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_03_165935) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_03_172841) do
   create_table "entries", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "feed_id", null: false
     t.string "title", null: false
@@ -45,6 +45,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_03_165935) do
     t.datetime "updated_at", null: false
     t.index ["feed_id"], name: "index_subscriptions_on_feed_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
+  create_table "taggings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "subscription_id", null: false
+    t.integer "position", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscription_id"], name: "index_taggings_on_subscription_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
 
   create_table "tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -83,5 +93,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_03_165935) do
   add_foreign_key "entries", "feeds"
   add_foreign_key "subscriptions", "feeds"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "taggings", "subscriptions"
+  add_foreign_key "taggings", "tags"
   add_foreign_key "tags", "users"
 end
