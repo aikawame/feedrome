@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 8.0.1'
 
+gem 'acts_as_list'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'faker'
