@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_03_063225) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_03_155845) do
+  create_table "entries", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "feed_id", null: false
+    t.string "title", null: false
+    t.text "description"
+    t.string "link_url", null: false
+    t.datetime "published_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feed_id"], name: "index_entries_on_feed_id"
+    t.index ["link_url"], name: "index_entries_on_link_url", unique: true
+    t.index ["published_at"], name: "index_entries_on_published_at"
+  end
+
   create_table "feeds", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "source_url", null: false
     t.string "title", null: false
@@ -48,4 +61,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_03_063225) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
+
+  add_foreign_key "entries", "feeds"
 end
