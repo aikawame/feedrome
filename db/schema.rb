@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_03_054137) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_03_063225) do
+  create_table "feeds", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "source_url", null: false
+    t.string "title", null: false
+    t.text "description"
+    t.string "langage_code"
+    t.string "link_url", null: false
+    t.datetime "modified_at", null: false
+    t.datetime "crawled_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crawled_at"], name: "index_feeds_on_crawled_at"
+    t.index ["source_url"], name: "index_feeds_on_source_url", unique: true
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
