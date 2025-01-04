@@ -6,6 +6,8 @@ gem 'rails', '~> 8.0.1'
 
 gem 'acts_as_list'
 gem 'bootsnap', require: false
+gem 'bootstrap'
+gem 'dartsass-rails'
 gem 'devise'
 gem 'faker'
 gem 'importmap-rails'
