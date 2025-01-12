@@ -9,6 +9,7 @@ gem 'bootsnap', require: false
 gem 'bootstrap'
 gem 'dartsass-rails'
 gem 'devise'
+gem 'devise-i18n'
 gem 'faker'
 gem 'importmap-rails'
 gem 'mysql2', '~> 0.5'

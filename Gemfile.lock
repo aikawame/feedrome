@@ -109,6 +109,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.12.1)
+      devise (>= 4.9.0)
     diff-lcs (1.5.1)
     docile (1.4.1)
     drb (2.2.1)
@@ -440,6 +442,7 @@ DEPENDENCIES
   dartsass-rails
   debug
   devise
+  devise-i18n
   factory_bot_rails
   faker
   importmap-rails
