@@ -1,0 +1,24 @@
+<div class="container">
+  <nav class="navbar navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Feedrome</a>
+      <div>
+        <%= link_to new_user_session_path do %>
+          <button class="btn btn-outline-primary fw-bold">
+            ログイン
+          </button>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+  <p class="display-4 fw-bold text-center mt-5 mb-5">
+    <strong>シンプルなRSSリーダー</strong>
+  </p>
+  <div class="col-md-3 mx-auto">
+    <%= link_to new_user_registration_path do %>
+      <button class="btn btn-lg btn-primary w-100 fw-bold">
+        いますぐお試し
+      </button>
+    <% end %>
+  </div>
+</div>
